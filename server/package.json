@@ -1,0 +1,22 @@
+{
+  "name": "space-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "cross-env PORT=8080 node ./bin/server.js",
+    "start:development": "cross-env PORT=8080 nodemon ./bin/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.3",
+    "logger": "0.0.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.4",
+    "path": "^0.12.7"
+  }
+}

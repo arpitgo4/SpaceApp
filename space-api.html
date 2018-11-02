@@ -1,0 +1,423 @@
+<!DOCTYPE HTML><html><head><title>Spaces API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 6.4.2"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          try {
+            if (history && history.replaceState) {
+                history.replaceState({}, '', '#');
+            }
+          } catch(e) {}
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h1 {
+        font-size: 1.3em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+      pre code {
+        overflow: auto;
+        word-wrap: normal;
+        white-space: pre;
+      }
+      .items {
+        background: #f5f5f5;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+      }
+      .examples {
+        margin-left: 0.5em;
+      }
+      .resource-modal li > ul {
+        margin-bottom: 1em;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Spaces API documentation</h1><p></p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="space" class="panel-title">/space</h3></div><div class="panel-body"><div class="top-resource-description"><p>Collection of available spaces</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_space"><span class="parent"></span>/space</a> <span class="methods"><a href="#space_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_space" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#space_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="space_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/space</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#space_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="space_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "sys": {
+    "type": "Array"
+  },
+  "total": 3,
+  "skip": 0,
+  "limit": 100,
+  "items": [{
+    "fields": {
+      "title": "My First Space"
+      "description": "This space was created by Alanna Atlassian as an example of how to create a space and relate assets and entries to it."
+    },
+    "sys": {
+      "id": "yadj1kx9rmg0",
+      "type": "Space",
+      "createdAt": "2015-05-18T11:29:46.809Z",
+      "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+      "updatedAt": "2015-05-18T11:29:46.809Z",
+      "updatedBy":  "4FLrUHftHW3v2BLi9fzfjU"
+    }
+  }, {
+    "fields": {
+      "title": "My Second Space",
+      "description": ""
+    },
+    "sys": {
+      "id": "yadj1kx9rmg01",
+      "type": "Space",
+      "createdAt": "2015-05-18T11:29:46.809Z",
+      "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+      "updatedAt": "2015-05-18T11:29:46.809Z",
+      "updatedBy":  "4FLrUHftHW3v2BLi9fzfjU"
+    }
+  }, {
+    "fields": {
+      "title": "My Third Space",
+      "description": ""
+    },
+    "sys": {
+      "id": "yadj1kx9rmg02",
+      "type": "Space",
+      "createdAt": "2015-05-18T11:29:46.809Z",
+      "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+      "updatedAt": "2015-05-18T11:29:46.809Z",
+      "updatedBy":  "4FLrUHftHW3v2BLi9fzfjU"
+    }
+  }]
+}                 
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_space__spaceid_"><span class="parent">/space</span>/{spaceId}</a> <span class="methods"><a href="#space__spaceid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_space__spaceid_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get a Space where <code>spaceId = {spaceId}</code></p></div><div class="list-group"><div onclick="window.location.href = '#space__spaceid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="space__spaceid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/space</span>/{spaceId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#space__spaceid__get_request" data-toggle="tab">Request</a></li><li><a href="#space__spaceid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="space__spaceid__get_request"><h3>URI Parameters</h3><ul><li><strong>spaceId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="space__spaceid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "fields": {
+    "title": "My First Space"
+  },
+  "sys": {
+    "id": "yadj1kx9rmg0",
+    "type": "Space",
+    "createdAt": "2015-05-18T11:29:46.809Z",
+    "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+    "updatedAt": "2015-05-18T11:29:46.809Z",
+    "updatedBy":  "4FLrUHftHW3v2BLi9fzfjU"
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_space__spaceid__entries"><span class="parent">/space/{spaceId}</span>/entries</a> <span class="methods"><a href="#space__spaceid__entries_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_space__spaceid__entries" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Collection of available entries in space. Body field is base64 encoded</p></div><div class="list-group"><div onclick="window.location.href = '#space__spaceid__entries_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a list of entries by spaceId. Body field is base64 encoded</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="space__spaceid__entries_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/space/{spaceId}</span>/entries</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a list of entries by spaceId. Body field is base64 encoded</p></div><ul class="nav nav-tabs"><li class="active"><a href="#space__spaceid__entries_get_request" data-toggle="tab">Request</a></li><li><a href="#space__spaceid__entries_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="space__spaceid__entries_get_request"><h3>URI Parameters</h3><ul><li><strong>spaceId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="space__spaceid__entries_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "sys": {
+    "type": "Array"
+  },
+  "total": 3,
+  "skip": 0,
+  "limit": 100,
+  "items": [{
+      "fields": {
+        "title": "Hello, World!",
+        "summary": "A Hello World is a common starting point for learning a new language or platform.",
+        "body": "PHA+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gSW50ZWdlciBuZWMgb2Rpby4gUHJhZXNlbnQgbGliZXJvLiBTZWQgY3Vyc3VzIGFudGUgZGFwaWJ1cyBkaWFtLiBTZWQgbmlzaS4gTnVsbGEgcXVpcyBzZW0gYXQgbmliaCBlbGVtZW50dW0gaW1wZXJkaWV0LiBEdWlzIHNhZ2l0dGlzIGlwc3VtLiBQcmFlc2VudCBtYXVyaXMuIEZ1c2NlIG5lYyB0ZWxsdXMgc2VkIGF1Z3VlIHNlbXBlciBwb3J0YS4gTWF1cmlzIG1hc3NhLiBWZXN0aWJ1bHVtIGxhY2luaWEgYXJjdSBlZ2V0IG51bGxhLiA8Yj5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgY29uc2VjdGV0dXIgYWRpcGlzY2luZyBlbGl0PC9iPi4gQ2xhc3MgYXB0ZW50IHRhY2l0aSBzb2Npb3NxdSBhZCBsaXRvcmEgdG9ycXVlbnQgcGVyIGNvbnViaWEgbm9zdHJhLCBwZXIgaW5jZXB0b3MgaGltZW5hZW9zLiBDdXJhYml0dXIgc29kYWxlcyBsaWd1bGEgaW4gbGliZXJvLiBTZWQgZGlnbmlzc2ltIGxhY2luaWEgbnVuYy4gQ3VyYWJpdHVyIHRvcnRvci4gUGVsbGVudGVzcXVlIG5pYmguIEFlbmVhbiBxdWFtLiBJbiBzY2VsZXJpc3F1ZSBzZW0gYXQgZG9sb3IuIE1hZWNlbmFzIG1hdHRpcy4gU2VkIGNvbnZhbGxpcyB0cmlzdGlxdWUgc2VtLiBQcm9pbiB1dCBsaWd1bGEgdmVsIG51bmMgZWdlc3RhcyBwb3J0dGl0b3IuIE1vcmJpIGxlY3R1cyByaXN1cywgaWFjdWxpcyB2ZWwsIHN1c2NpcGl0IHF1aXMsIGx1Y3R1cyBub24sIG1hc3NhLiBGdXNjZSBhYyB0dXJwaXMgcXVpcyBsaWd1bGEgbGFjaW5pYSBhbGlxdWV0LiBNYXVyaXMgaXBzdW0uIE51bGxhIG1ldHVzIG1ldHVzLCB1bGxhbWNvcnBlciB2ZWwsIHRpbmNpZHVudCBzZWQsIGV1aXNtb2QgaW4sIG5pYmguIFF1aXNxdWUgdm9sdXRwYXQgY29uZGltZW50dW0gdmVsaXQuIENsYXNzIGFwdGVudCB0YWNpdGkgc29jaW9zcXUgYWQgbGl0b3JhIHRvcnF1ZW50IHBlciBjb251YmlhIG5vc3RyYSwgcGVyIGluY2VwdG9zIGhpbWVuYWVvcy4gTmFtIG5lYyBhbnRlLiBTZWQgbGFjaW5pYSwgdXJuYSBub24gdGluY2lkdW50IG1hdHRpcywgdG9ydG9yIG5lcXVlIGFkaXBpc2NpbmcgZGlhbSwgYSBjdXJzdXMgaXBzdW0gYW50ZSBxdWlzIHR1cnBpcy4gTnVsbGEgZmFjaWxpc2kuIFV0IGZyaW5naWxsYS4gU3VzcGVuZGlzc2UgcG90ZW50aS4gTnVuYyBmZXVnaWF0IG1pIGEgdGVsbHVzIGNvbnNlcXVhdCBpbXBlcmRpZXQuIFZlc3RpYnVsdW0gc2FwaWVuLiBQcm9pbiBxdWFtLiBFdGlhbSB1bHRyaWNlcy4gU3VzcGVuZGlzc2UgaW4ganVzdG8gZXUgbWFnbmEgbHVjdHVzIHN1c2NpcGl0LiBTZWQgbGVjdHVzLiBJbnRlZ2VyIGV1aXNtb2QgbGFjdXMgbHVjdHVzIG1hZ25hLiA8Yj5DbGFzcyBhcHRlbnQgdGFjaXRpIHNvY2lvc3F1IGFkIGxpdG9yYSB0b3JxdWVudCBwZXIgY29udWJpYSBub3N0cmEsIHBlciBpbmNlcHRvcyBoaW1lbmFlb3M8L2I+LiBRdWlzcXVlIGN1cnN1cywgbWV0dXMgdml0YWUgcGhhcmV0cmEgYXVjdG9yLCBzZW0gbWFzc2EgbWF0dGlzIHNlbSwgYXQgaW50ZXJkdW0gbWFnbmEgYXVndWUgZWdldCBkaWFtLiBWZXN0aWJ1bHVtIGFudGUgaXBzdW0gcHJpbWlzIGluIGZhdWNpYnVzIG9yY2kgbHVjdHVzIGV0IHVsdHJpY2VzIHBvc3VlcmUgY3ViaWxpYSBDdXJhZTsgTW9yYmkgbGFjaW5pYSBtb2xlc3RpZSBkdWkuIFByYWVzZW50IGJsYW5kaXQgZG9sb3IuIFNlZCBub24gcXVhbS4gSW4gdmVsIG1pIHNpdCBhbWV0IGF1Z3VlIGNvbmd1ZSBlbGVtZW50dW0uIDxiPlZlc3RpYnVsdW0gc2FwaWVuPC9iPi4gTW9yYmkgaW4gaXBzdW0gc2l0IGFtZXQgcGVkZSBmYWNpbGlzaXMgbGFvcmVldC4gPGI+U3VzcGVuZGlzc2UgaW4ganVzdG8gZXUgbWFnbmEgbHVjdHVzIHN1c2NpcGl0PC9iPi4gRG9uZWMgbGFjdXMgbnVuYywgdml2ZXJyYSBuZWMsIGJsYW5kaXQgdmVsLCBlZ2VzdGFzIGV0LCBhdWd1ZS4gVmVzdGlidWx1bSB0aW5jaWR1bnQgbWFsZXN1YWRhIHRlbGx1cy4gVXQgdWx0cmljZXMgdWx0cmljZXMgZW5pbS4gQ3VyYWJpdHVyIHNpdCBhbWV0IG1hdXJpcy4gTW9yYmkgaW4gZHVpIHF1aXMgZXN0IHB1bHZpbmFyIHVsbGFtY29ycGVyLiA8L3A+"
+      },
+      "sys": {
+        "id": "5KsDBWseXY6QegucYAoacS1",
+        "type": "Entry",
+        "version": 1,
+        "space": "yadj1kx9rmg0",
+        "createdAt": "2015-05-18T11:29:46.809Z",
+        "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+        "updatedAt": "2015-05-18T11:29:46.809Z",
+        "updatedBy": "4FLrUHftHW3v2BLi9fzfjU"
+      }
+    },
+    {
+      "fields": {
+        "title": "Tutorial 1",
+        "summary": "In this tutorial, we will dive deeper into how to leverage the new platform.",
+        "body": "PHA+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gSW50ZWdlciBuZWMgb2Rpby4gUHJhZXNlbnQgbGliZXJvLiBTZWQgY3Vyc3VzIGFudGUgZGFwaWJ1cyBkaWFtLiBTZWQgbmlzaS4gTnVsbGEgcXVpcyBzZW0gYXQgbmliaCBlbGVtZW50dW0gaW1wZXJkaWV0LiBEdWlzIHNhZ2l0dGlzIGlwc3VtLiBQcmFlc2VudCBtYXVyaXMuIEZ1c2NlIG5lYyB0ZWxsdXMgc2VkIGF1Z3VlIHNlbXBlciBwb3J0YS4gTWF1cmlzIG1hc3NhLiA8Yj5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgY29uc2VjdGV0dXIgYWRpcGlzY2luZyBlbGl0PC9iPi4gVmVzdGlidWx1bSBsYWNpbmlhIGFyY3UgZWdldCBudWxsYS4gPGI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdDwvYj4uIENsYXNzIGFwdGVudCB0YWNpdGkgc29jaW9zcXUgYWQgbGl0b3JhIHRvcnF1ZW50IHBlciBjb251YmlhIG5vc3RyYSwgcGVyIGluY2VwdG9zIGhpbWVuYWVvcy4gQ3VyYWJpdHVyIHNvZGFsZXMgbGlndWxhIGluIGxpYmVyby4gU2VkIGRpZ25pc3NpbSBsYWNpbmlhIG51bmMuIEN1cmFiaXR1ciB0b3J0b3IuIFBlbGxlbnRlc3F1ZSBuaWJoLiBBZW5lYW4gcXVhbS4gSW4gc2NlbGVyaXNxdWUgc2VtIGF0IGRvbG9yLiBNYWVjZW5hcyBtYXR0aXMuIFNlZCBjb252YWxsaXMgdHJpc3RpcXVlIHNlbS4gUHJvaW4gdXQgbGlndWxhIHZlbCBudW5jIGVnZXN0YXMgcG9ydHRpdG9yLiA8Yj5DdXJhYml0dXIgdG9ydG9yPC9iPi4gTW9yYmkgbGVjdHVzIHJpc3VzLCBpYWN1bGlzIHZlbCwgc3VzY2lwaXQgcXVpcywgbHVjdHVzIG5vbiwgbWFzc2EuIEZ1c2NlIGFjIHR1cnBpcyBxdWlzIGxpZ3VsYSBsYWNpbmlhIGFsaXF1ZXQuIE1hdXJpcyBpcHN1bS4gTnVsbGEgbWV0dXMgbWV0dXMsIHVsbGFtY29ycGVyIHZlbCwgdGluY2lkdW50IHNlZCwgZXVpc21vZCBpbiwgbmliaC4gUXVpc3F1ZSB2b2x1dHBhdCBjb25kaW1lbnR1bSB2ZWxpdC4gQ2xhc3MgYXB0ZW50IHRhY2l0aSBzb2Npb3NxdSBhZCBsaXRvcmEgdG9ycXVlbnQgcGVyIGNvbnViaWEgbm9zdHJhLCBwZXIgaW5jZXB0b3MgaGltZW5hZW9zLiBOYW0gbmVjIGFudGUuIFNlZCBsYWNpbmlhLCB1cm5hIG5vbiB0aW5jaWR1bnQgbWF0dGlzLCB0b3J0b3IgbmVxdWUgYWRpcGlzY2luZyBkaWFtLCBhIGN1cnN1cyBpcHN1bSBhbnRlIHF1aXMgdHVycGlzLiBOdWxsYSBmYWNpbGlzaS4gVXQgZnJpbmdpbGxhLiBTdXNwZW5kaXNzZSBwb3RlbnRpLiA8Yj5OdWxsYSBtZXR1cyBtZXR1cywgdWxsYW1jb3JwZXIgdmVsLCB0aW5jaWR1bnQgc2VkLCBldWlzbW9kIGluLCBuaWJoPC9iPi4gTnVuYyBmZXVnaWF0IG1pIGEgdGVsbHVzIGNvbnNlcXVhdCBpbXBlcmRpZXQuIFZlc3RpYnVsdW0gc2FwaWVuLiBQcm9pbiBxdWFtLiBFdGlhbSB1bHRyaWNlcy4gPGI+TnVsbGEgbWV0dXMgbWV0dXMsIHVsbGFtY29ycGVyIHZlbCwgdGluY2lkdW50IHNlZCwgZXVpc21vZCBpbiwgbmliaDwvYj4uIFN1c3BlbmRpc3NlIGluIGp1c3RvIGV1IG1hZ25hIGx1Y3R1cyBzdXNjaXBpdC4gU2VkIGxlY3R1cy4gSW50ZWdlciBldWlzbW9kIGxhY3VzIGx1Y3R1cyBtYWduYS4gUXVpc3F1ZSBjdXJzdXMsIG1ldHVzIHZpdGFlIHBoYXJldHJhIGF1Y3Rvciwgc2VtIG1hc3NhIG1hdHRpcyBzZW0sIGF0IGludGVyZHVtIG1hZ25hIGF1Z3VlIGVnZXQgZGlhbS4gVmVzdGlidWx1bSBhbnRlIGlwc3VtIHByaW1pcyBpbiBmYXVjaWJ1cyBvcmNpIGx1Y3R1cyBldCB1bHRyaWNlcyBwb3N1ZXJlIGN1YmlsaWEgQ3VyYWU7IE1vcmJpIGxhY2luaWEgbW9sZXN0aWUgZHVpLiBQcmFlc2VudCBibGFuZGl0IGRvbG9yLiBTZWQgbm9uIHF1YW0uIEluIHZlbCBtaSBzaXQgYW1ldCBhdWd1ZSBjb25ndWUgZWxlbWVudHVtLiBNb3JiaSBpbiBpcHN1bSBzaXQgYW1ldCBwZWRlIGZhY2lsaXNpcyBsYW9yZWV0LiBEb25lYyBsYWN1cyBudW5jLCB2aXZlcnJhIG5lYywgYmxhbmRpdCB2ZWwsIGVnZXN0YXMgZXQsIGF1Z3VlLiBWZXN0aWJ1bHVtIHRpbmNpZHVudCBtYWxlc3VhZGEgdGVsbHVzLiBVdCB1bHRyaWNlcyB1bHRyaWNlcyBlbmltLiBDdXJhYml0dXIgc2l0IGFtZXQgbWF1cmlzLiA8Yj5TZWQgbm9uIHF1YW08L2I+LiBNb3JiaSBpbiBkdWkgcXVpcyBlc3QgcHVsdmluYXIgdWxsYW1jb3JwZXIuIE51bGxhIGZhY2lsaXNpLiBJbnRlZ2VyIGxhY2luaWEgc29sbGljaXR1ZGluIG1hc3NhLiBDcmFzIG1ldHVzLiBTZWQgYWxpcXVldCByaXN1cyBhIHRvcnRvci4gSW50ZWdlciBpZCBxdWFtLiBNb3JiaSBtaS4gPGI+TW9yYmkgaW4gZHVpIHF1aXMgZXN0IHB1bHZpbmFyIHVsbGFtY29ycGVyPC9iPi4gUXVpc3F1ZSBuaXNsIGZlbGlzLCB2ZW5lbmF0aXMgdHJpc3RpcXVlLCBkaWduaXNzaW0gaW4sIHVsdHJpY2VzIHNpdCBhbWV0LCBhdWd1ZS4gUHJvaW4gc29kYWxlcyBsaWJlcm8gZWdldCBhbnRlLiBOdWxsYSBxdWFtLiBBZW5lYW4gbGFvcmVldC4gVmVzdGlidWx1bSBuaXNpIGxlY3R1cywgY29tbW9kbyBhYywgZmFjaWxpc2lzIGFjLCB1bHRyaWNpZXMgZXUsIHBlZGUuIFV0IG9yY2kgcmlzdXMsIGFjY3Vtc2FuIHBvcnR0aXRvciwgY3Vyc3VzIHF1aXMsIGFsaXF1ZXQgZWdldCwganVzdG8uIFNlZCBwcmV0aXVtIGJsYW5kaXQgb3JjaS4gPGI+UXVpc3F1ZSBuaXNsIGZlbGlzLCB2ZW5lbmF0aXMgdHJpc3RpcXVlLCBkaWduaXNzaW0gaW4sIHVsdHJpY2VzIHNpdCBhbWV0LCBhdWd1ZTwvYj4uIFV0IGV1IGRpYW0gYXQgcGVkZSBzdXNjaXBpdCBzb2RhbGVzLiBBZW5lYW4gbGVjdHVzIGVsaXQsIGZlcm1lbnR1bSBub24sIGNvbnZhbGxpcyBpZCwgc2FnaXR0aXMgYXQsIG5lcXVlLiBOdWxsYW0gbWF1cmlzIG9yY2ksIGFsaXF1ZXQgZXQsIGlhY3VsaXMgZXQsIHZpdmVycmEgdml0YWUsIGxpZ3VsYS4gTnVsbGEgdXQgZmVsaXMgaW4gcHVydXMgYWxpcXVhbSBpbXBlcmRpZXQuIE1hZWNlbmFzIGFsaXF1ZXQgbW9sbGlzIGxlY3R1cy4gPGk+SW50ZWdlciBsYWNpbmlhIHNvbGxpY2l0dWRpbiBtYXNzYTwvaT4uIFZpdmFtdXMgY29uc2VjdGV0dWVyIHJpc3VzIGV0IHRvcnRvci4gTG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gSW50ZWdlciBuZWMgb2Rpby4gUHJhZXNlbnQgbGliZXJvLiBTZWQgY3Vyc3VzIGFudGUgZGFwaWJ1cyBkaWFtLiBTZWQgbmlzaS4gTnVsbGEgcXVpcyBzZW0gYXQgbmliaCBlbGVtZW50dW0gaW1wZXJkaWV0LiA8L3A+"
+      },
+      "sys": {
+        "id": "5KsDBWseXY6QegucYAoacS2",
+        "type": "Entry",
+        "version": 1,
+        "space": "yadj1kx9rmg0",
+        "createdAt": "2015-05-18T11:29:46.809Z",
+        "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+        "updatedAt": "2015-12-18T11:29:46.809Z",
+        "updatedBy": "4FLrUHftHW3v2BLi9fzfjU2"
+      }
+    },
+    {
+      "fields": {
+        "title": "Tutorial 2",
+        "summary": "In this tutorial, we will provide an example deployment.",
+        "body": "PHA+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gSW50ZWdlciBuZWMgb2Rpby4gUHJhZXNlbnQgbGliZXJvLiBTZWQgY3Vyc3VzIGFudGUgZGFwaWJ1cyBkaWFtLiBTZWQgbmlzaS4gTnVsbGEgcXVpcyBzZW0gYXQgbmliaCBlbGVtZW50dW0gaW1wZXJkaWV0LiBEdWlzIHNhZ2l0dGlzIGlwc3VtLiBQcmFlc2VudCBtYXVyaXMuIDxiPkxvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LCBjb25zZWN0ZXR1ciBhZGlwaXNjaW5nIGVsaXQ8L2I+LiBGdXNjZSBuZWMgdGVsbHVzIHNlZCBhdWd1ZSBzZW1wZXIgcG9ydGEuIE1hdXJpcyBtYXNzYS4gPGI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdDwvYj4uIFZlc3RpYnVsdW0gbGFjaW5pYSBhcmN1IGVnZXQgbnVsbGEuIDwvcD4KCjxwPkNsYXNzIGFwdGVudCB0YWNpdGkgc29jaW9zcXUgYWQgbGl0b3JhIHRvcnF1ZW50IHBlciBjb251YmlhIG5vc3RyYSwgcGVyIGluY2VwdG9zIGhpbWVuYWVvcy4gQ3VyYWJpdHVyIHNvZGFsZXMgbGlndWxhIGluIGxpYmVyby4gPGI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdDwvYj4uIFNlZCBkaWduaXNzaW0gbGFjaW5pYSBudW5jLiBDdXJhYml0dXIgdG9ydG9yLiBQZWxsZW50ZXNxdWUgbmliaC4gQWVuZWFuIHF1YW0uIEluIHNjZWxlcmlzcXVlIHNlbSBhdCBkb2xvci4gTWFlY2VuYXMgbWF0dGlzLiBTZWQgY29udmFsbGlzIHRyaXN0aXF1ZSBzZW0uIFByb2luIHV0IGxpZ3VsYSB2ZWwgbnVuYyBlZ2VzdGFzIHBvcnR0aXRvci4gTW9yYmkgbGVjdHVzIHJpc3VzLCBpYWN1bGlzIHZlbCwgc3VzY2lwaXQgcXVpcywgbHVjdHVzIG5vbiwgbWFzc2EuIDwvcD4KCjxwPkZ1c2NlIGFjIHR1cnBpcyBxdWlzIGxpZ3VsYSBsYWNpbmlhIGFsaXF1ZXQuIE1hdXJpcyBpcHN1bS4gTnVsbGEgbWV0dXMgbWV0dXMsIHVsbGFtY29ycGVyIHZlbCwgdGluY2lkdW50IHNlZCwgZXVpc21vZCBpbiwgbmliaC4gUXVpc3F1ZSB2b2x1dHBhdCBjb25kaW1lbnR1bSB2ZWxpdC4gPGI+U2VkIGRpZ25pc3NpbSBsYWNpbmlhIG51bmM8L2I+LiBDbGFzcyBhcHRlbnQgdGFjaXRpIHNvY2lvc3F1IGFkIGxpdG9yYSB0b3JxdWVudCBwZXIgY29udWJpYSBub3N0cmEsIHBlciBpbmNlcHRvcyBoaW1lbmFlb3MuIE5hbSBuZWMgYW50ZS4gU2VkIGxhY2luaWEsIHVybmEgbm9uIHRpbmNpZHVudCBtYXR0aXMsIHRvcnRvciBuZXF1ZSBhZGlwaXNjaW5nIGRpYW0sIGEgY3Vyc3VzIGlwc3VtIGFudGUgcXVpcyB0dXJwaXMuIE51bGxhIGZhY2lsaXNpLiBVdCBmcmluZ2lsbGEuIFN1c3BlbmRpc3NlIHBvdGVudGkuIDxiPk51bGxhIG1ldHVzIG1ldHVzLCB1bGxhbWNvcnBlciB2ZWwsIHRpbmNpZHVudCBzZWQsIGV1aXNtb2QgaW4sIG5pYmg8L2I+LiBOdW5jIGZldWdpYXQgbWkgYSB0ZWxsdXMgY29uc2VxdWF0IGltcGVyZGlldC4gPGI+RnVzY2UgYWMgdHVycGlzIHF1aXMgbGlndWxhIGxhY2luaWEgYWxpcXVldDwvYj4uIFZlc3RpYnVsdW0gc2FwaWVuLiA8L3A+Cgo8cD48aT5JbiBzY2VsZXJpc3F1ZSBzZW0gYXQgZG9sb3I8L2k+LiBQcm9pbiBxdWFtLiBFdGlhbSB1bHRyaWNlcy4gPGI+TnVsbGEgbWV0dXMgbWV0dXMsIHVsbGFtY29ycGVyIHZlbCwgdGluY2lkdW50IHNlZCwgZXVpc21vZCBpbiwgbmliaDwvYj4uIFN1c3BlbmRpc3NlIGluIGp1c3RvIGV1IG1hZ25hIGx1Y3R1cyBzdXNjaXBpdC4gU2VkIGxlY3R1cy4gSW50ZWdlciBldWlzbW9kIGxhY3VzIGx1Y3R1cyBtYWduYS4gUXVpc3F1ZSBjdXJzdXMsIG1ldHVzIHZpdGFlIHBoYXJldHJhIGF1Y3Rvciwgc2VtIG1hc3NhIG1hdHRpcyBzZW0sIGF0IGludGVyZHVtIG1hZ25hIGF1Z3VlIGVnZXQgZGlhbS4gVmVzdGlidWx1bSBhbnRlIGlwc3VtIHByaW1pcyBpbiBmYXVjaWJ1cyBvcmNpIGx1Y3R1cyBldCB1bHRyaWNlcyBwb3N1ZXJlIGN1YmlsaWEgQ3VyYWU7IE1vcmJpIGxhY2luaWEgbW9sZXN0aWUgZHVpLiBQcmFlc2VudCBibGFuZGl0IGRvbG9yLiBTZWQgbm9uIHF1YW0uIEluIHZlbCBtaSBzaXQgYW1ldCBhdWd1ZSBjb25ndWUgZWxlbWVudHVtLiA8aT5GdXNjZSBhYyB0dXJwaXMgcXVpcyBsaWd1bGEgbGFjaW5pYSBhbGlxdWV0PC9pPi4gTW9yYmkgaW4gaXBzdW0gc2l0IGFtZXQgcGVkZSBmYWNpbGlzaXMgbGFvcmVldC4gRG9uZWMgbGFjdXMgbnVuYywgdml2ZXJyYSBuZWMsIGJsYW5kaXQgdmVsLCBlZ2VzdGFzIGV0LCBhdWd1ZS4gPC9wPgoKPHA+VmVzdGlidWx1bSB0aW5jaWR1bnQgbWFsZXN1YWRhIHRlbGx1cy4gVXQgdWx0cmljZXMgdWx0cmljZXMgZW5pbS4gPGk+TnVsbGEgbWV0dXMgbWV0dXMsIHVsbGFtY29ycGVyIHZlbCwgdGluY2lkdW50IHNlZCwgZXVpc21vZCBpbiwgbmliaDwvaT4uIEN1cmFiaXR1ciBzaXQgYW1ldCBtYXVyaXMuIE1vcmJpIGluIGR1aSBxdWlzIGVzdCBwdWx2aW5hciB1bGxhbWNvcnBlci4gTnVsbGEgZmFjaWxpc2kuIDxpPlByb2luIHF1YW08L2k+LiBJbnRlZ2VyIGxhY2luaWEgc29sbGljaXR1ZGluIG1hc3NhLiBDcmFzIG1ldHVzLiBTZWQgYWxpcXVldCByaXN1cyBhIHRvcnRvci4gSW50ZWdlciBpZCBxdWFtLiBNb3JiaSBtaS4gUXVpc3F1ZSBuaXNsIGZlbGlzLCB2ZW5lbmF0aXMgdHJpc3RpcXVlLCBkaWduaXNzaW0gaW4sIHVsdHJpY2VzIHNpdCBhbWV0LCBhdWd1ZS4gUHJvaW4gc29kYWxlcyBsaWJlcm8gZWdldCBhbnRlLiBOdWxsYSBxdWFtLiA8L3A+Cgo8cD5BZW5lYW4gbGFvcmVldC4gVmVzdGlidWx1bSBuaXNpIGxlY3R1cywgY29tbW9kbyBhYywgZmFjaWxpc2lzIGFjLCB1bHRyaWNpZXMgZXUsIHBlZGUuIFV0IG9yY2kgcmlzdXMsIGFjY3Vtc2FuIHBvcnR0aXRvciwgY3Vyc3VzIHF1aXMsIGFsaXF1ZXQgZWdldCwganVzdG8uIFNlZCBwcmV0aXVtIGJsYW5kaXQgb3JjaS4gPGI+SW50ZWdlciBpZCBxdWFtPC9iPi4gVXQgZXUgZGlhbSBhdCBwZWRlIHN1c2NpcGl0IHNvZGFsZXMuIEFlbmVhbiBsZWN0dXMgZWxpdCwgZmVybWVudHVtIG5vbiwgY29udmFsbGlzIGlkLCBzYWdpdHRpcyBhdCwgbmVxdWUuIE51bGxhbSBtYXVyaXMgb3JjaSwgYWxpcXVldCBldCwgaWFjdWxpcyBldCwgdml2ZXJyYSB2aXRhZSwgbGlndWxhLiBOdWxsYSB1dCBmZWxpcyBpbiBwdXJ1cyBhbGlxdWFtIGltcGVyZGlldC4gTWFlY2VuYXMgYWxpcXVldCBtb2xsaXMgbGVjdHVzLiBWaXZhbXVzIGNvbnNlY3RldHVlciByaXN1cyBldCB0b3J0b3IuIExvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LCBjb25zZWN0ZXR1ciBhZGlwaXNjaW5nIGVsaXQuIEludGVnZXIgbmVjIG9kaW8uIFByYWVzZW50IGxpYmVyby4gU2VkIGN1cnN1cyBhbnRlIGRhcGlidXMgZGlhbS4gPC9wPgoKPHA+U2VkIG5pc2kuIE51bGxhIHF1aXMgc2VtIGF0IG5pYmggZWxlbWVudHVtIGltcGVyZGlldC4gRHVpcyBzYWdpdHRpcyBpcHN1bS4gPGk+UHJvaW4gc29kYWxlcyBsaWJlcm8gZWdldCBhbnRlPC9pPi4gUHJhZXNlbnQgbWF1cmlzLiBGdXNjZSBuZWMgdGVsbHVzIHNlZCBhdWd1ZSBzZW1wZXIgcG9ydGEuIE1hdXJpcyBtYXNzYS4gVmVzdGlidWx1bSBsYWNpbmlhIGFyY3UgZWdldCBudWxsYS4gPGI+U2VkIGN1cnN1cyBhbnRlIGRhcGlidXMgZGlhbTwvYj4uIENsYXNzIGFwdGVudCB0YWNpdGkgc29jaW9zcXUgYWQgbGl0b3JhIHRvcnF1ZW50IHBlciBjb251YmlhIG5vc3RyYSwgcGVyIGluY2VwdG9zIGhpbWVuYWVvcy4gQ3VyYWJpdHVyIHNvZGFsZXMgbGlndWxhIGluIGxpYmVyby4gU2VkIGRpZ25pc3NpbSBsYWNpbmlhIG51bmMuIEN1cmFiaXR1ciB0b3J0b3IuIFBlbGxlbnRlc3F1ZSBuaWJoLiA8L3A+Cgo8cD5BZW5lYW4gcXVhbS4gSW4gc2NlbGVyaXNxdWUgc2VtIGF0IGRvbG9yLiBNYWVjZW5hcyBtYXR0aXMuIFNlZCBjb252YWxsaXMgdHJpc3RpcXVlIHNlbS4gUHJvaW4gdXQgbGlndWxhIHZlbCBudW5jIGVnZXN0YXMgcG9ydHRpdG9yLiBNb3JiaSBsZWN0dXMgcmlzdXMsIGlhY3VsaXMgdmVsLCBzdXNjaXBpdCBxdWlzLCBsdWN0dXMgbm9uLCBtYXNzYS4gRnVzY2UgYWMgdHVycGlzIHF1aXMgbGlndWxhIGxhY2luaWEgYWxpcXVldC4gTWF1cmlzIGlwc3VtLiBOdWxsYSBtZXR1cyBtZXR1cywgdWxsYW1jb3JwZXIgdmVsLCB0aW5jaWR1bnQgc2VkLCBldWlzbW9kIGluLCBuaWJoLiBRdWlzcXVlIHZvbHV0cGF0IGNvbmRpbWVudHVtIHZlbGl0LiBDbGFzcyBhcHRlbnQgdGFjaXRpIHNvY2lvc3F1IGFkIGxpdG9yYSB0b3JxdWVudCBwZXIgY29udWJpYSBub3N0cmEsIHBlciBpbmNlcHRvcyBoaW1lbmFlb3MuIDxiPlBlbGxlbnRlc3F1ZSBuaWJoPC9iPi4gTmFtIG5lYyBhbnRlLiA8L3A+Cgo8cD5TZWQgbGFjaW5pYSwgdXJuYSBub24gdGluY2lkdW50IG1hdHRpcywgdG9ydG9yIG5lcXVlIGFkaXBpc2NpbmcgZGlhbSwgYSBjdXJzdXMgaXBzdW0gYW50ZSBxdWlzIHR1cnBpcy4gTnVsbGEgZmFjaWxpc2kuIDxiPk1vcmJpIGxlY3R1cyByaXN1cywgaWFjdWxpcyB2ZWwsIHN1c2NpcGl0IHF1aXMsIGx1Y3R1cyBub24sIG1hc3NhPC9iPi4gVXQgZnJpbmdpbGxhLiA8aT5EdWlzIHNhZ2l0dGlzIGlwc3VtPC9pPi4gU3VzcGVuZGlzc2UgcG90ZW50aS4gTnVuYyBmZXVnaWF0IG1pIGEgdGVsbHVzIGNvbnNlcXVhdCBpbXBlcmRpZXQuIFZlc3RpYnVsdW0gc2FwaWVuLiBQcm9pbiBxdWFtLiBFdGlhbSB1bHRyaWNlcy4gU3VzcGVuZGlzc2UgaW4ganVzdG8gZXUgbWFnbmEgbHVjdHVzIHN1c2NpcGl0LiBTZWQgbGVjdHVzLiBJbnRlZ2VyIGV1aXNtb2QgbGFjdXMgbHVjdHVzIG1hZ25hLiA8Yj5OYW0gbmVjIGFudGU8L2I+LiBRdWlzcXVlIGN1cnN1cywgbWV0dXMgdml0YWUgcGhhcmV0cmEgYXVjdG9yLCBzZW0gbWFzc2EgbWF0dGlzIHNlbSwgYXQgaW50ZXJkdW0gbWFnbmEgYXVndWUgZWdldCBkaWFtLiBWZXN0aWJ1bHVtIGFudGUgaXBzdW0gcHJpbWlzIGluIGZhdWNpYnVzIG9yY2kgbHVjdHVzIGV0IHVsdHJpY2VzIHBvc3VlcmUgY3ViaWxpYSBDdXJhZTsgTW9yYmkgbGFjaW5pYSBtb2xlc3RpZSBkdWkuIFByYWVzZW50IGJsYW5kaXQgZG9sb3IuIDwvcD4KCjxwPlNlZCBub24gcXVhbS4gSW4gdmVsIG1pIHNpdCBhbWV0IGF1Z3VlIGNvbmd1ZSBlbGVtZW50dW0uIE1vcmJpIGluIGlwc3VtIHNpdCBhbWV0IHBlZGUgZmFjaWxpc2lzIGxhb3JlZXQuIERvbmVjIGxhY3VzIG51bmMsIHZpdmVycmEgbmVjLCBibGFuZGl0IHZlbCwgZWdlc3RhcyBldCwgYXVndWUuIFZlc3RpYnVsdW0gdGluY2lkdW50IG1hbGVzdWFkYSB0ZWxsdXMuIFV0IHVsdHJpY2VzIHVsdHJpY2VzIGVuaW0uIEN1cmFiaXR1ciBzaXQgYW1ldCBtYXVyaXMuIE1vcmJpIGluIGR1aSBxdWlzIGVzdCBwdWx2aW5hciB1bGxhbWNvcnBlci4gPGk+VmVzdGlidWx1bSBzYXBpZW48L2k+LiBOdWxsYSBmYWNpbGlzaS4gPGI+SW4gdmVsIG1pIHNpdCBhbWV0IGF1Z3VlIGNvbmd1ZSBlbGVtZW50dW08L2I+LiBJbnRlZ2VyIGxhY2luaWEgc29sbGljaXR1ZGluIG1hc3NhLiBDcmFzIG1ldHVzLiBTZWQgYWxpcXVldCByaXN1cyBhIHRvcnRvci4gSW50ZWdlciBpZCBxdWFtLiA8L3A+Cgo8cD5Nb3JiaSBtaS4gUXVpc3F1ZSBuaXNsIGZlbGlzLCB2ZW5lbmF0aXMgdHJpc3RpcXVlLCBkaWduaXNzaW0gaW4sIHVsdHJpY2VzIHNpdCBhbWV0LCBhdWd1ZS4gPGI+TnVsbGEgZmFjaWxpc2k8L2I+LiBQcm9pbiBzb2RhbGVzIGxpYmVybyBlZ2V0IGFudGUuIE51bGxhIHF1YW0uIDxpPkluIHZlbCBtaSBzaXQgYW1ldCBhdWd1ZSBjb25ndWUgZWxlbWVudHVtPC9pPi4gQWVuZWFuIGxhb3JlZXQuIFZlc3RpYnVsdW0gbmlzaSBsZWN0dXMsIGNvbW1vZG8gYWMsIGZhY2lsaXNpcyBhYywgdWx0cmljaWVzIGV1LCBwZWRlLiBVdCBvcmNpIHJpc3VzLCBhY2N1bXNhbiBwb3J0dGl0b3IsIGN1cnN1cyBxdWlzLCBhbGlxdWV0IGVnZXQsIGp1c3RvLiBTZWQgcHJldGl1bSBibGFuZGl0IG9yY2kuIFV0IGV1IGRpYW0gYXQgcGVkZSBzdXNjaXBpdCBzb2RhbGVzLiBBZW5lYW4gbGVjdHVzIGVsaXQsIGZlcm1lbnR1bSBub24sIGNvbnZhbGxpcyBpZCwgc2FnaXR0aXMgYXQsIG5lcXVlLiBOdWxsYW0gbWF1cmlzIG9yY2ksIGFsaXF1ZXQgZXQsIGlhY3VsaXMgZXQsIHZpdmVycmEgdml0YWUsIGxpZ3VsYS4gTnVsbGEgdXQgZmVsaXMgaW4gcHVydXMgYWxpcXVhbSBpbXBlcmRpZXQuIDxiPkFlbmVhbiBsYW9yZWV0PC9iPi4gTWFlY2VuYXMgYWxpcXVldCBtb2xsaXMgbGVjdHVzLiBWaXZhbXVzIGNvbnNlY3RldHVlciByaXN1cyBldCB0b3J0b3IuIDwvcD4KCjxwPkxvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LCBjb25zZWN0ZXR1ciBhZGlwaXNjaW5nIGVsaXQuIEludGVnZXIgbmVjIG9kaW8uIFByYWVzZW50IGxpYmVyby4gU2VkIGN1cnN1cyBhbnRlIGRhcGlidXMgZGlhbS4gU2VkIG5pc2kuIE51bGxhIHF1aXMgc2VtIGF0IG5pYmggZWxlbWVudHVtIGltcGVyZGlldC4gPGk+SW50ZWdlciBsYWNpbmlhIHNvbGxpY2l0dWRpbiBtYXNzYTwvaT4uIER1aXMgc2FnaXR0aXMgaXBzdW0uIFByYWVzZW50IG1hdXJpcy4gRnVzY2UgbmVjIHRlbGx1cyBzZWQgYXVndWUgc2VtcGVyIHBvcnRhLiBNYXVyaXMgbWFzc2EuIFZlc3RpYnVsdW0gbGFjaW5pYSBhcmN1IGVnZXQgbnVsbGEuIENsYXNzIGFwdGVudCB0YWNpdGkgc29jaW9zcXUgYWQgbGl0b3JhIHRvcnF1ZW50IHBlciBjb251YmlhIG5vc3RyYSwgcGVyIGluY2VwdG9zIGhpbWVuYWVvcy4gPC9wPgoKPHA+Q3VyYWJpdHVyIHNvZGFsZXMgbGlndWxhIGluIGxpYmVyby4gU2VkIGRpZ25pc3NpbSBsYWNpbmlhIG51bmMuIEN1cmFiaXR1ciB0b3J0b3IuIFBlbGxlbnRlc3F1ZSBuaWJoLiBBZW5lYW4gcXVhbS4gSW4gc2NlbGVyaXNxdWUgc2VtIGF0IGRvbG9yLiBNYWVjZW5hcyBtYXR0aXMuIFNlZCBjb252YWxsaXMgdHJpc3RpcXVlIHNlbS4gUHJvaW4gdXQgbGlndWxhIHZlbCBudW5jIGVnZXN0YXMgcG9ydHRpdG9yLiBNb3JiaSBsZWN0dXMgcmlzdXMsIGlhY3VsaXMgdmVsLCBzdXNjaXBpdCBxdWlzLCBsdWN0dXMgbm9uLCBtYXNzYS4gPGk+UHJhZXNlbnQgbGliZXJvPC9pPi4gRnVzY2UgYWMgdHVycGlzIHF1aXMgbGlndWxhIGxhY2luaWEgYWxpcXVldC4gTWF1cmlzIGlwc3VtLiA8L3A+Cgo8cD5OdWxsYSBtZXR1cyBtZXR1cywgdWxsYW1jb3JwZXIgdmVsLCB0aW5jaWR1bnQgc2VkLCBldWlzbW9kIGluLCBuaWJoLiBRdWlzcXVlIHZvbHV0cGF0IGNvbmRpbWVudHVtIHZlbGl0LiBDbGFzcyBhcHRlbnQgdGFjaXRpIHNvY2lvc3F1IGFkIGxpdG9yYSB0b3JxdWVudCBwZXIgY29udWJpYSBub3N0cmEsIHBlciBpbmNlcHRvcyBoaW1lbmFlb3MuIE5hbSBuZWMgYW50ZS4gU2VkIGxhY2luaWEsIHVybmEgbm9uIHRpbmNpZHVudCBtYXR0aXMsIHRvcnRvciBuZXF1ZSBhZGlwaXNjaW5nIGRpYW0sIGEgY3Vyc3VzIGlwc3VtIGFudGUgcXVpcyB0dXJwaXMuIE51bGxhIGZhY2lsaXNpLiBVdCBmcmluZ2lsbGEuIFN1c3BlbmRpc3NlIHBvdGVudGkuIE51bmMgZmV1Z2lhdCBtaSBhIHRlbGx1cyBjb25zZXF1YXQgaW1wZXJkaWV0LiBWZXN0aWJ1bHVtIHNhcGllbi4gUHJvaW4gcXVhbS4gRXRpYW0gdWx0cmljZXMuIFN1c3BlbmRpc3NlIGluIGp1c3RvIGV1IG1hZ25hIGx1Y3R1cyBzdXNjaXBpdC4gPC9wPgoKPHA+U2VkIGxlY3R1cy4gSW50ZWdlciBldWlzbW9kIGxhY3VzIGx1Y3R1cyBtYWduYS4gUXVpc3F1ZSBjdXJzdXMsIG1ldHVzIHZpdGFlIHBoYXJldHJhIGF1Y3Rvciwgc2VtIG1hc3NhIG1hdHRpcyBzZW0sIGF0IGludGVyZHVtIG1hZ25hIGF1Z3VlIGVnZXQgZGlhbS4gVmVzdGlidWx1bSBhbnRlIGlwc3VtIHByaW1pcyBpbiBmYXVjaWJ1cyBvcmNpIGx1Y3R1cyBldCB1bHRyaWNlcyBwb3N1ZXJlIGN1YmlsaWEgQ3VyYWU7IE1vcmJpIGxhY2luaWEgbW9sZXN0aWUgZHVpLiBQcmFlc2VudCBibGFuZGl0IGRvbG9yLiBTZWQgbm9uIHF1YW0uIEluIHZlbCBtaSBzaXQgYW1ldCBhdWd1ZSBjb25ndWUgZWxlbWVudHVtLiA8aT5VdCBmcmluZ2lsbGE8L2k+LiBNb3JiaSBpbiBpcHN1bSBzaXQgYW1ldCBwZWRlIGZhY2lsaXNpcyBsYW9yZWV0LiBEb25lYyBsYWN1cyBudW5jLCB2aXZlcnJhIG5lYywgYmxhbmRpdCB2ZWwsIGVnZXN0YXMgZXQsIGF1Z3VlLiBWZXN0aWJ1bHVtIHRpbmNpZHVudCBtYWxlc3VhZGEgdGVsbHVzLiBVdCB1bHRyaWNlcyB1bHRyaWNlcyBlbmltLiBDdXJhYml0dXIgc2l0IGFtZXQgbWF1cmlzLiA8Yj5JbnRlZ2VyIGV1aXNtb2QgbGFjdXMgbHVjdHVzIG1hZ25hPC9iPi4gTW9yYmkgaW4gZHVpIHF1aXMgZXN0IHB1bHZpbmFyIHVsbGFtY29ycGVyLiA8L3A+Cgo8cD5OdWxsYSBmYWNpbGlzaS4gPGI+TW9yYmkgaW4gaXBzdW0gc2l0IGFtZXQgcGVkZSBmYWNpbGlzaXMgbGFvcmVldDwvYj4uIEludGVnZXIgbGFjaW5pYSBzb2xsaWNpdHVkaW4gbWFzc2EuIENyYXMgbWV0dXMuIFNlZCBhbGlxdWV0IHJpc3VzIGEgdG9ydG9yLiBJbnRlZ2VyIGlkIHF1YW0uIE1vcmJpIG1pLiBRdWlzcXVlIG5pc2wgZmVsaXMsIHZlbmVuYXRpcyB0cmlzdGlxdWUsIGRpZ25pc3NpbSBpbiwgdWx0cmljZXMgc2l0IGFtZXQsIGF1Z3VlLiBQcm9pbiBzb2RhbGVzIGxpYmVybyBlZ2V0IGFudGUuIDxiPkludGVnZXIgbGFjaW5pYSBzb2xsaWNpdHVkaW4gbWFzc2E8L2I+LiBOdWxsYSBxdWFtLiBBZW5lYW4gbGFvcmVldC4gVmVzdGlidWx1bSBuaXNpIGxlY3R1cywgY29tbW9kbyBhYywgZmFjaWxpc2lzIGFjLCB1bHRyaWNpZXMgZXUsIHBlZGUuIFV0IG9yY2kgcmlzdXMsIGFjY3Vtc2FuIHBvcnR0aXRvciwgY3Vyc3VzIHF1aXMsIGFsaXF1ZXQgZWdldCwganVzdG8uIDxpPlNlZCBsZWN0dXM8L2k+LiBTZWQgcHJldGl1bSBibGFuZGl0IG9yY2kuIDwvcD4KCjxwPlV0IGV1IGRpYW0gYXQgcGVkZSBzdXNjaXBpdCBzb2RhbGVzLiBBZW5lYW4gbGVjdHVzIGVsaXQsIGZlcm1lbnR1bSBub24sIGNvbnZhbGxpcyBpZCwgc2FnaXR0aXMgYXQsIG5lcXVlLiA8Yj5OdWxsYSBxdWFtPC9iPi4gTnVsbGFtIG1hdXJpcyBvcmNpLCBhbGlxdWV0IGV0LCBpYWN1bGlzIGV0LCB2aXZlcnJhIHZpdGFlLCBsaWd1bGEuIE51bGxhIHV0IGZlbGlzIGluIHB1cnVzIGFsaXF1YW0gaW1wZXJkaWV0LiBNYWVjZW5hcyBhbGlxdWV0IG1vbGxpcyBsZWN0dXMuIFZpdmFtdXMgY29uc2VjdGV0dWVyIHJpc3VzIGV0IHRvcnRvci4gTG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gSW50ZWdlciBuZWMgb2Rpby4gUHJhZXNlbnQgbGliZXJvLiBTZWQgY3Vyc3VzIGFudGUgZGFwaWJ1cyBkaWFtLiBTZWQgbmlzaS4gTnVsbGEgcXVpcyBzZW0gYXQgbmliaCBlbGVtZW50dW0gaW1wZXJkaWV0LiBEdWlzIHNhZ2l0dGlzIGlwc3VtLiA8L3A+Cgo8cD5QcmFlc2VudCBtYXVyaXMuIEZ1c2NlIG5lYyB0ZWxsdXMgc2VkIGF1Z3VlIHNlbXBlciBwb3J0YS4gTWF1cmlzIG1hc3NhLiBWZXN0aWJ1bHVtIGxhY2luaWEgYXJjdSBlZ2V0IG51bGxhLiBDbGFzcyBhcHRlbnQgdGFjaXRpIHNvY2lvc3F1IGFkIGxpdG9yYSB0b3JxdWVudCBwZXIgY29udWJpYSBub3N0cmEsIHBlciBpbmNlcHRvcyBoaW1lbmFlb3MuIEN1cmFiaXR1ciBzb2RhbGVzIGxpZ3VsYSBpbiBsaWJlcm8uIFNlZCBkaWduaXNzaW0gbGFjaW5pYSBudW5jLiBDdXJhYml0dXIgdG9ydG9yLiBQZWxsZW50ZXNxdWUgbmliaC4gQWVuZWFuIHF1YW0uIEluIHNjZWxlcmlzcXVlIHNlbSBhdCBkb2xvci4gTWFlY2VuYXMgbWF0dGlzLiA8L3A+Cgo8cD5TZWQgY29udmFsbGlzIHRyaXN0aXF1ZSBzZW0uIFByb2luIHV0IGxpZ3VsYSB2ZWwgbnVuYyBlZ2VzdGFzIHBvcnR0aXRvci4gTW9yYmkgbGVjdHVzIHJpc3VzLCBpYWN1bGlzIHZlbCwgc3VzY2lwaXQgcXVpcywgbHVjdHVzIG5vbiwgbWFzc2EuIEZ1c2NlIGFjIHR1cnBpcyBxdWlzIGxpZ3VsYSBsYWNpbmlhIGFsaXF1ZXQuIDxiPlNlZCBkaWduaXNzaW0gbGFjaW5pYSBudW5jPC9iPi4gTWF1cmlzIGlwc3VtLiBOdWxsYSBtZXR1cyBtZXR1cywgdWxsYW1jb3JwZXIgdmVsLCB0aW5jaWR1bnQgc2VkLCBldWlzbW9kIGluLCBuaWJoLiBRdWlzcXVlIHZvbHV0cGF0IGNvbmRpbWVudHVtIHZlbGl0LiBDbGFzcyBhcHRlbnQgdGFjaXRpIHNvY2lvc3F1IGFkIGxpdG9yYSB0b3JxdWVudCBwZXIgY29udWJpYSBub3N0cmEsIHBlciBpbmNlcHRvcyBoaW1lbmFlb3MuIE5hbSBuZWMgYW50ZS4gU2VkIGxhY2luaWEsIHVybmEgbm9uIHRpbmNpZHVudCBtYXR0aXMsIHRvcnRvciBuZXF1ZSBhZGlwaXNjaW5nIGRpYW0sIGEgY3Vyc3VzIGlwc3VtIGFudGUgcXVpcyB0dXJwaXMuIE51bGxhIGZhY2lsaXNpLiBVdCBmcmluZ2lsbGEuIDwvcD4KCjxwPlN1c3BlbmRpc3NlIHBvdGVudGkuIE51bmMgZmV1Z2lhdCBtaSBhIHRlbGx1cyBjb25zZXF1YXQgaW1wZXJkaWV0LiA8aT5TZWQgZGlnbmlzc2ltIGxhY2luaWEgbnVuYzwvaT4uIFZlc3RpYnVsdW0gc2FwaWVuLiBQcm9pbiBxdWFtLiBFdGlhbSB1bHRyaWNlcy4gU3VzcGVuZGlzc2UgaW4ganVzdG8gZXUgbWFnbmEgbHVjdHVzIHN1c2NpcGl0LiBTZWQgbGVjdHVzLiBJbnRlZ2VyIGV1aXNtb2QgbGFjdXMgbHVjdHVzIG1hZ25hLiBRdWlzcXVlIGN1cnN1cywgbWV0dXMgdml0YWUgcGhhcmV0cmEgYXVjdG9yLCBzZW0gbWFzc2EgbWF0dGlzIHNlbSwgYXQgaW50ZXJkdW0gbWFnbmEgYXVndWUgZWdldCBkaWFtLiBWZXN0aWJ1bHVtIGFudGUgaXBzdW0gcHJpbWlzIGluIGZhdWNpYnVzIG9yY2kgbHVjdHVzIGV0IHVsdHJpY2VzIHBvc3VlcmUgY3ViaWxpYSBDdXJhZTsgTW9yYmkgbGFjaW5pYSBtb2xlc3RpZSBkdWkuIFByYWVzZW50IGJsYW5kaXQgZG9sb3IuIFNlZCBub24gcXVhbS4gSW4gdmVsIG1pIHNpdCBhbWV0IGF1Z3VlIGNvbmd1ZSBlbGVtZW50dW0uIE1vcmJpIGluIGlwc3VtIHNpdCBhbWV0IHBlZGUgZmFjaWxpc2lzIGxhb3JlZXQuIDwvcD4KCjxwPjxiPlN1c3BlbmRpc3NlIGluIGp1c3RvIGV1IG1hZ25hIGx1Y3R1cyBzdXNjaXBpdDwvYj4uIERvbmVjIGxhY3VzIG51bmMsIHZpdmVycmEgbmVjLCBibGFuZGl0IHZlbCwgZWdlc3RhcyBldCwgYXVndWUuIFZlc3RpYnVsdW0gdGluY2lkdW50IG1hbGVzdWFkYSB0ZWxsdXMuIFV0IHVsdHJpY2VzIHVsdHJpY2VzIGVuaW0uIEN1cmFiaXR1ciBzaXQgYW1ldCBtYXVyaXMuIE1vcmJpIGluIGR1aSBxdWlzIGVzdCBwdWx2aW5hciB1bGxhbWNvcnBlci4gTnVsbGEgZmFjaWxpc2kuIEludGVnZXIgbGFjaW5pYSBzb2xsaWNpdHVkaW4gbWFzc2EuIENyYXMgbWV0dXMuIFNlZCBhbGlxdWV0IHJpc3VzIGEgdG9ydG9yLiBJbnRlZ2VyIGlkIHF1YW0uIE1vcmJpIG1pLiBRdWlzcXVlIG5pc2wgZmVsaXMsIHZlbmVuYXRpcyB0cmlzdGlxdWUsIGRpZ25pc3NpbSBpbiwgdWx0cmljZXMgc2l0IGFtZXQsIGF1Z3VlLiBQcm9pbiBzb2RhbGVzIGxpYmVybyBlZ2V0IGFudGUuIDwvcD4KCjxwPk51bGxhIHF1YW0uIEFlbmVhbiBsYW9yZWV0LiBWZXN0aWJ1bHVtIG5pc2kgbGVjdHVzLCBjb21tb2RvIGFjLCBmYWNpbGlzaXMgYWMsIHVsdHJpY2llcyBldSwgcGVkZS4gVXQgb3JjaSByaXN1cywgYWNjdW1zYW4gcG9ydHRpdG9yLCBjdXJzdXMgcXVpcywgYWxpcXVldCBlZ2V0LCBqdXN0by4gU2VkIHByZXRpdW0gYmxhbmRpdCBvcmNpLiA8Yj5JbnRlZ2VyIGlkIHF1YW08L2I+LiBVdCBldSBkaWFtIGF0IHBlZGUgc3VzY2lwaXQgc29kYWxlcy4gQWVuZWFuIGxlY3R1cyBlbGl0LCBmZXJtZW50dW0gbm9uLCBjb252YWxsaXMgaWQsIHNhZ2l0dGlzIGF0LCBuZXF1ZS4gTnVsbGFtIG1hdXJpcyBvcmNpLCBhbGlxdWV0IGV0LCBpYWN1bGlzIGV0LCB2aXZlcnJhIHZpdGFlLCBsaWd1bGEuIE51bGxhIHV0IGZlbGlzIGluIHB1cnVzIGFsaXF1YW0gaW1wZXJkaWV0LiBNYWVjZW5hcyBhbGlxdWV0IG1vbGxpcyBsZWN0dXMuIFZpdmFtdXMgY29uc2VjdGV0dWVyIHJpc3VzIGV0IHRvcnRvci4gTG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gSW50ZWdlciBuZWMgb2Rpby4gPC9wPgoKPHA+UHJhZXNlbnQgbGliZXJvLiA8Yj5VdCBldSBkaWFtIGF0IHBlZGUgc3VzY2lwaXQgc29kYWxlczwvYj4uIFNlZCBjdXJzdXMgYW50ZSBkYXBpYnVzIGRpYW0uIDxiPk51bGxhbSBtYXVyaXMgb3JjaSwgYWxpcXVldCBldCwgaWFjdWxpcyBldCwgdml2ZXJyYSB2aXRhZSwgbGlndWxhPC9iPi4gU2VkIG5pc2kuIE51bGxhIHF1aXMgc2VtIGF0IG5pYmggZWxlbWVudHVtIGltcGVyZGlldC4gRHVpcyBzYWdpdHRpcyBpcHN1bS4gUHJhZXNlbnQgbWF1cmlzLiBGdXNjZSBuZWMgdGVsbHVzIHNlZCBhdWd1ZSBzZW1wZXIgcG9ydGEuIE1hdXJpcyBtYXNzYS4gVmVzdGlidWx1bSBsYWNpbmlhIGFyY3UgZWdldCBudWxsYS4gQ2xhc3MgYXB0ZW50IHRhY2l0aSBzb2Npb3NxdSBhZCBsaXRvcmEgdG9ycXVlbnQgcGVyIGNvbnViaWEgbm9zdHJhLCBwZXIgaW5jZXB0b3MgaGltZW5hZW9zLiA8aT5VdCBldSBkaWFtIGF0IHBlZGUgc3VzY2lwaXQgc29kYWxlczwvaT4uIEN1cmFiaXR1ciBzb2RhbGVzIGxpZ3VsYSBpbiBsaWJlcm8uIFNlZCBkaWduaXNzaW0gbGFjaW5pYSBudW5jLiBDdXJhYml0dXIgdG9ydG9yLiBQZWxsZW50ZXNxdWUgbmliaC4gPC9wPgoKPHA+QWVuZWFuIHF1YW0uIEluIHNjZWxlcmlzcXVlIHNlbSBhdCBkb2xvci4gPGk+U2VkIG5pc2k8L2k+LiBNYWVjZW5hcyBtYXR0aXMuIFNlZCBjb252YWxsaXMgdHJpc3RpcXVlIHNlbS4gUHJvaW4gdXQgbGlndWxhIHZlbCBudW5jIGVnZXN0YXMgcG9ydHRpdG9yLiA8Yj5DdXJhYml0dXIgc29kYWxlcyBsaWd1bGEgaW4gbGliZXJvPC9iPi4gTW9yYmkgbGVjdHVzIHJpc3VzLCBpYWN1bGlzIHZlbCwgc3VzY2lwaXQgcXVpcywgbHVjdHVzIG5vbiwgbWFzc2EuIEZ1c2NlIGFjIHR1cnBpcyBxdWlzIGxpZ3VsYSBsYWNpbmlhIGFsaXF1ZXQuIDxiPlZlc3RpYnVsdW0gbGFjaW5pYSBhcmN1IGVnZXQgbnVsbGE8L2I+LiBNYXVyaXMgaXBzdW0uIDxpPlNlZCBuaXNpPC9pPi4gTnVsbGEgbWV0dXMgbWV0dXMsIHVsbGFtY29ycGVyIHZlbCwgdGluY2lkdW50IHNlZCwgZXVpc21vZCBpbiwgbmliaC4gUXVpc3F1ZSB2b2x1dHBhdCBjb25kaW1lbnR1bSB2ZWxpdC4gQ2xhc3MgYXB0ZW50IHRhY2l0aSBzb2Npb3NxdSBhZCBsaXRvcmEgdG9ycXVlbnQgcGVyIGNvbnViaWEgbm9zdHJhLCBwZXIgaW5jZXB0b3MgaGltZW5hZW9zLiBOYW0gbmVjIGFudGUuIFNlZCBsYWNpbmlhLCB1cm5hIG5vbiB0aW5jaWR1bnQgbWF0dGlzLCB0b3J0b3IgbmVxdWUgYWRpcGlzY2luZyBkaWFtLCBhIGN1cnN1cyBpcHN1bSBhbnRlIHF1aXMgdHVycGlzLiBOdWxsYSBmYWNpbGlzaS4gPC9wPgoKPHA+PGI+TW9yYmkgbGVjdHVzIHJpc3VzLCBpYWN1bGlzIHZlbCwgc3VzY2lwaXQgcXVpcywgbHVjdHVzIG5vbiwgbWFzc2E8L2I+LiBVdCBmcmluZ2lsbGEuIFN1c3BlbmRpc3NlIHBvdGVudGkuIE51bmMgZmV1Z2lhdCBtaSBhIHRlbGx1cyBjb25zZXF1YXQgaW1wZXJkaWV0LiBWZXN0aWJ1bHVtIHNhcGllbi4gUHJvaW4gcXVhbS4gRXRpYW0gdWx0cmljZXMuIFN1c3BlbmRpc3NlIGluIGp1c3RvIGV1IG1hZ25hIGx1Y3R1cyBzdXNjaXBpdC4gU2VkIGxlY3R1cy4gSW50ZWdlciBldWlzbW9kIGxhY3VzIGx1Y3R1cyBtYWduYS4gUXVpc3F1ZSBjdXJzdXMsIG1ldHVzIHZpdGFlIHBoYXJldHJhIGF1Y3Rvciwgc2VtIG1hc3NhIG1hdHRpcyBzZW0sIGF0IGludGVyZHVtIG1hZ25hIGF1Z3VlIGVnZXQgZGlhbS4gVmVzdGlidWx1bSBhbnRlIGlwc3VtIHByaW1pcyBpbiBmYXVjaWJ1cyBvcmNpIGx1Y3R1cyBldCB1bHRyaWNlcyBwb3N1ZXJlIGN1YmlsaWEgQ3VyYWU7IE1vcmJpIGxhY2luaWEgbW9sZXN0aWUgZHVpLiBQcmFlc2VudCBibGFuZGl0IGRvbG9yLiBTZWQgbm9uIHF1YW0uIDwvcD4KCg=="
+      },
+      "sys": {
+        "id": "5KsDBWseXY6QegucYAoacS3",
+        "type": "Entry",
+        "version": 1,
+        "space": "yadj1kx9rmg0",
+        "createdAt": "2015-05-18T11:29:46.809Z",
+        "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+        "updatedAt": "2015-12-18T11:29:46.809Z",
+        "updatedBy": "4FLrUHftHW3v2BLi9fzfjU2"
+      }
+    }]
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_space__spaceid__entries__entryid_"><span class="parent">/space/{spaceId}/entries</span>/{entryId}</a> <span class="methods"><a href="#space__spaceid__entries__entryid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_space__spaceid__entries__entryid_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get an Entry where <code>entryId = {entryId}</code></p></div><div class="list-group"><div onclick="window.location.href = '#space__spaceid__entries__entryid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="space__spaceid__entries__entryid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/space/{spaceId}/entries</span>/{entryId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#space__spaceid__entries__entryid__get_request" data-toggle="tab">Request</a></li><li><a href="#space__spaceid__entries__entryid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="space__spaceid__entries__entryid__get_request"><h3>URI Parameters</h3><ul><li><strong>spaceId</strong>: <em>required (string)</em></li><li><strong>entryId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="space__spaceid__entries__entryid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "fields": {
+      "title": "Hello, World!",
+      "body": "A Hello World is a common starting point for learning a new language or platform."
+    },
+    "sys": {
+      "id": "5KsDBWseXY6QegucYAoacS1",
+      "type": "Entry",
+      "version": 1,
+      "space": "yadj1kx9rmg0",
+      "createdAt": "2015-05-18T11:29:46.809Z",
+      "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+      "updatedAt": "2015-05-18T11:29:46.809Z",
+      "updatedBy": "4FLrUHftHW3v2BLi9fzfjU"
+    }
+  }
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{"message": "entry not found"}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_space__spaceid__assets"><span class="parent">/space/{spaceId}</span>/assets</a> <span class="methods"><a href="#space__spaceid__assets_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_space__spaceid__assets" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Collection of available assets</p></div><div class="list-group"><div onclick="window.location.href = '#space__spaceid__assets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a list of assets by contentType</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="space__spaceid__assets_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/space/{spaceId}</span>/assets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a list of assets by contentType</p></div><ul class="nav nav-tabs"><li class="active"><a href="#space__spaceid__assets_get_request" data-toggle="tab">Request</a></li><li><a href="#space__spaceid__assets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="space__spaceid__assets_get_request"><h3>URI Parameters</h3><ul><li><strong>spaceId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>contentType</strong>: <em>(string - minLength: 3)</em><p>The contentType of an asset</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>image/jpeg</code></pre></div></li></ul></div><div class="tab-pane" id="space__spaceid__assets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "sys": {
+    "type": "Array"
+  },
+  "total": 3,
+  "skip": 0,
+  "limit": 100,
+  "items": [{
+        "fields": {
+          "title": "Hero Collaboration Partial",
+          "contentType": "image/png",
+          "fileName": "hero-collaboration-partial.png",
+          "upload": "https://wac-cdn.atlassian.com/dam/jcr:51be4df5-1ffb-4a4d-9f44-0b84dad9de5e/hero-collaboration-partial.png"
+        },
+        "sys": {
+          "id": "wtrHxeu3zEoEce2MokCSi1",
+          "type": "Asset",
+          "version": 1,
+          "space": "yadj1kx9rmg0",
+          "createdAt": "2015-05-18T11:29:46.809Z",
+          "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+          "updatedAt": "2015-05-18T11:29:46.809Z",
+          "updatedBy": "4FLrUHftHW3v2BLi9fzfjU"
+        }
+      },{
+        "fields": {
+          "title": "Stride Chat",
+          "contentType": "image/png",
+          "fileName": "stride_chat.svg",
+          "upload": "https://wac-cdn.atlassian.com/dam/jcr:61741d76-b9a0-44b1-a31f-bfde8e6930ab/stride_chat.svg"
+        },
+        "sys": {
+          "id": "wtrHxeu3zEoEce2MokCSi2",
+          "type": "Asset",
+          "version": 1,
+          "space": "yadj1kx9rmg0",
+          "createdAt": "2015-05-18T11:29:46.809Z",
+          "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+          "updatedAt": "2015-05-18T11:29:46.809Z",
+          "updatedBy": "4FLrUHftHW3v2BLi9fzfjU2"
+        }
+      },{
+        "fields": {
+          "title": "Get Started",
+          "contentType": "image/png",
+          "fileName": "getstarted-collab.png",
+          "upload": "https://wac-cdn.atlassian.com/dam/jcr:c7bdc391-e84f-43fe-9e8b-194d8a3b9aaf/getstarted-collab.png"
+        },
+        "sys": {
+          "id": "wtrHxeu3zEoEce2MokCSi3",
+          "type": "Asset",
+          "version": 1,
+          "space": "yadj1kx9rmg0",
+          "createdAt": "2015-05-18T11:29:46.809Z",
+          "createdBy": "4FLrUHftHW3v2BLi9fzfjU2",
+          "updatedAt": "2015-05-18T11:29:46.809Z",
+          "updatedBy": "4FLrUHftHW3v2BLi9fzfjU2"
+        }
+      }]
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_space__spaceid__assets__assetid_"><span class="parent">/space/{spaceId}/assets</span>/{assetId}</a> <span class="methods"><a href="#space__spaceid__assets__assetid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_space__spaceid__assets__assetid_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get a Asset where <code>assetId = {assetId}</code></p></div><div class="list-group"><div onclick="window.location.href = '#space__spaceid__assets__assetid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the asset with <code>assetId = {assetId}</code></p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="space__spaceid__assets__assetid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/space/{spaceId}/assets</span>/{assetId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the asset with <code>assetId = {assetId}</code></p></div><ul class="nav nav-tabs"><li class="active"><a href="#space__spaceid__assets__assetid__get_request" data-toggle="tab">Request</a></li><li><a href="#space__spaceid__assets__assetid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="space__spaceid__assets__assetid__get_request"><h3>URI Parameters</h3><ul><li><strong>spaceId</strong>: <em>required (string)</em></li><li><strong>assetId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="space__spaceid__assets__assetid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+      "fields": {
+        "title": "My First Asset",
+        "contentType": "image/jpeg",
+        "fileName": "asset.jpeg",
+        "upload": "https://example.com/asset1.jpg"
+      },
+      "sys": {
+        "id": "wtrHxeu3zEoEce2MokCSi1",
+        "type": "Asset",
+        "version": 1,
+        "space": "yadj1kx9rmg0",
+        "createdAt": "2015-05-18T11:29:46.809Z",
+        "createdBy": "4FLrUHftHW3v2BLi9fzfjU",
+        "updatedAt": "2015-05-18T11:29:46.809Z",
+        "updatedBy": "4FLrUHftHW3v2BLi9fzfjU"
+      }
+    }
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{"message": "asset not found"}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="users" class="panel-title">/users</h3></div><div class="panel-body"><div class="top-resource-description"><p>Collection of users</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_users"><span class="parent"></span>/users</a> <span class="methods"><a href="#users_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_users" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#users_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a list of users</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="users_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/users</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a list of users</p></div><ul class="nav nav-tabs"><li class="active"><a href="#users_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="users_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "sys": {
+    "type": "Array"
+  },
+  "total": 1,
+  "skip": 0,
+  "limit": 100,
+  "items": [{
+        "fields": {
+          "name": "Alana Atlassian",
+          "role": "Author"
+        },
+        "sys": {
+          "id": "4FLrUHftHW3v2BLi9fzfjU",
+          "type": "User"
+        }
+      },{
+        "fields": {
+          "name": "John Doe",
+          "role": "Editor"
+        },
+        "sys": {
+          "id": "4FLrUHftHW3v2BLi9fzfjU2",
+          "type": "User"
+        }
+      }]
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_users__userid_"><span class="parent">/users</span>/{userId}</a> <span class="methods"><a href="#users__userid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_users__userid_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get an Entry where <code>userId = {userId}</code></p></div><div class="list-group"><div onclick="window.location.href = '#users__userid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="users__userid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/users</span>/{userId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#users__userid__get_request" data-toggle="tab">Request</a></li><li><a href="#users__userid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="users__userid__get_request"><h3>URI Parameters</h3><ul><li><strong>userId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="users__userid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "fields": {
+    "name": "Alana Atlassian",
+    "role": "Author"
+  },
+  "sys": {
+    "id": "4FLrUHftHW3v2BLi9fzfjU",
+    "type": "User"
+  }
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{"message": "User not found"}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#space">/space</a></li><li><a href="#users">/users</a></li></ul></div></div></div></div></body></html>

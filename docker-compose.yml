@@ -1,0 +1,22 @@
+
+version: "2"
+
+services:
+
+    server:
+      container_name: space-api-server
+      restart: always
+      build: ./server
+      ports: 
+        - 8080:8080
+
+    client:
+      container_name: space-client
+      restart: always
+      build: ./client
+      ports:
+        - 80:80
+      depends_on:
+        - server
+      links: 
+        - server
